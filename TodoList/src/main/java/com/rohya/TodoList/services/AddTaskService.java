@@ -12,7 +12,9 @@ import com.rohya.TodoList.utils.Utils;
 public class AddTaskService implements Function<AddTaskService.Request, AddTaskService.Response> {
 	
 	@Autowired private TodoListRepository todoListRepository;
-
+	public record Request( TodoList task ){}
+	public record Response( String response ){}
+	
 	@Override
 	public Response apply(Request request) {
 		
@@ -39,8 +41,5 @@ public class AddTaskService implements Function<AddTaskService.Request, AddTaskS
 				Utils.isValidString( task.getDescription() ) && 
 				(task.getDeadline().isEqual(LocalDateTime.now()) || task.getDeadline().isAfter(LocalDateTime.now())); 
 	}
-	
-	public record Request( TodoList task ){}
-	public record Response( String response ){}
 
 }

@@ -11,30 +11,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.annotation.PostConstruct;
+
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/askAi")
 public class AiBot {
 
 	private ChatClient chatClient;
-	
+	private ChatClient.Builder builder;
 	@Value("${system.build.message}")
 	private String systemConfig;
 	
 	public AiBot( ChatClient.Builder builder ) {
-		chatClient = builder.defaultFunctions( "addTaskFunction" ).defaultAdvisors(
-				// Chat memory helps us keep context when using the chatbot for up to 100 previous messages.
-				new MessageChatMemoryAdvisor(new InMemoryChatMemory(), "User", 100), // CHAT MEMORY
-				new SimpleLoggerAdvisor()
-		)
-		.build();
+		this.builder = builder;
+	}
+	
+	@PostConstruct
+	public void AiBotInit( ) {
+		chatClient = builder.defaultSystem(systemConfig)
+				.defaultFunctions( "addTaskFunction","showAllTasksFunction" )
+				.build();	
 	}
 	
 	@GetMapping("/")
 	public String askAi( @RequestParam String askme ) {
 		
 		return chatClient.prompt()
-				.system(systemConfig)
 				.user(askme)
 				.call()
 				.content();
