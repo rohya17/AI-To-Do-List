@@ -1,6 +1,6 @@
 package com.rohya.TodoList.services;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.function.Function;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class AddTaskService implements Function<AddTaskService.Request, AddTaskS
 		TodoList task = request.task();
 		task.setCompleted(false);
 		if( task.getDeadline() == null ) {
-			task.setDeadline(LocalDate.now().plusDays(1) );
+			task.setDeadline(LocalDateTime.now().plusDays(1) );
 		}
 		
 		if( validRequest( task ) ) {
@@ -37,7 +37,7 @@ public class AddTaskService implements Function<AddTaskService.Request, AddTaskS
 		
 		return Utils.isValidString( task.getName() ) && 
 				Utils.isValidString( task.getDescription() ) && 
-				(task.getDeadline().isEqual(LocalDate.now()) || task.getDeadline().isAfter(LocalDate.now())); 
+				(task.getDeadline().isEqual(LocalDateTime.now()) || task.getDeadline().isAfter(LocalDateTime.now())); 
 	}
 	
 	public record Request( TodoList task ){}
