@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Description;
 
 import com.rohya.TodoList.services.AddTaskService;
+import com.rohya.TodoList.services.ChangeTaskStatusService;
 import com.rohya.TodoList.services.ShowTaskService;
 
 import io.swagger.v3.oas.models.OpenAPI;
@@ -29,6 +30,12 @@ public class ConfigClass {
     @Description("Show all tasks")
     public Function<ShowTaskService.Request, ShowTaskService.Response> showAllTasksFunction() {
         return new ShowTaskService();
+    }
+	
+	@Bean
+    @Description("Update task status")
+    public Function<ChangeTaskStatusService.Request, ChangeTaskStatusService.Response> changeTasksStatusFunction() {
+        return new ChangeTaskStatusService();
     }
 	
 	@Bean

@@ -3,6 +3,7 @@ package com.rohya.TodoList.controller;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
+import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.ai.chat.memory.InMemoryChatMemory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -29,9 +30,16 @@ public class AiBot {
 	
 	@PostConstruct
 	public void AiBotInit( ) {
+
 		chatClient = builder.defaultSystem(systemConfig)
-				.defaultFunctions( "addTaskFunction","showAllTasksFunction" )
-				.build();	
+				.defaultFunctions( "addTaskFunction","showAllTasksFunction","changeTasksStatusFunction" )
+				.defaultAdvisors(
+						// Chat memory helps us keep context when using the chatbot for up to 10 previous messages.
+						new MessageChatMemoryAdvisor(new InMemoryChatMemory(), "USER", 100), // CHAT MEMORY
+						new SimpleLoggerAdvisor()
+				)
+				.build();
+
 	}
 	
 	@GetMapping("/")

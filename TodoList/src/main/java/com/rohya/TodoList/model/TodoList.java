@@ -1,6 +1,5 @@
 package com.rohya.TodoList.model;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
@@ -16,19 +15,17 @@ public class TodoList {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String name;
-	private String description;
+	private String task;
 	private LocalDateTime deadline;
 	private boolean completed;
 	
 	public TodoList() {
 		super();
 	}
-	public TodoList(String name, String description, LocalDateTime deadline) {
+	public TodoList(String task, String deadline) {
 		super();
-		this.name = name;
-		this.description = description;
-		this.deadline = deadline;
+		this.task = task;
+		this.deadline = LocalDateTime.parse(deadline);
 	}
 	public int getId() {
 		return id;
@@ -36,19 +33,12 @@ public class TodoList {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+	public String getTask() {
+		return task;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setTask(String task) {
+		this.task = task;
 	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	
 	public LocalDateTime getDeadline() {
 		return deadline;
 	}
@@ -61,5 +51,8 @@ public class TodoList {
 	public void setCompleted(boolean completed) {
 		this.completed = completed;
 	}
-	
+	@Override
+	public String toString() {
+		return "TodoList [id=" + id + ", task=" + task + ", deadline=" + deadline + ", completed=" + completed + "]";
+	}
 }

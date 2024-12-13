@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.rohya.TodoList.model.TodoList;
 import com.rohya.TodoList.repository.TodoListRepository;
-import com.rohya.TodoList.utils.Utils;
 
 public class ShowTaskService implements Function<ShowTaskService.Request, ShowTaskService.Response> {
 
@@ -38,8 +37,8 @@ public class ShowTaskService implements Function<ShowTaskService.Request, ShowTa
 		List<TodoList> toDoList = todoListRepository.findAll();
 		for (TodoList todo : toDoList) {
 			Map<String,String> todomap = new HashMap<>();
-			todomap.put("name", todo.getName());
-			todomap.put("description", todo.getDescription());
+			todomap.put("taskId", todo.getId()+"");
+			todomap.put("task", todo.getTask());
 			todomap.put("deadline", todo.getDeadline().toString());
 			todomap.put("status", todo.isCompleted() ? "Completed" : "Pending");
 			responseList.add(todomap);

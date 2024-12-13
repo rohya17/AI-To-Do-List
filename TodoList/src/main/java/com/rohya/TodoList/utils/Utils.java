@@ -14,4 +14,8 @@ public class Utils {
 		return deadline.isAfter(LocalDate.now());
 	}
 
+	public static boolean isValidInteger(Integer integer) {
+		return  integer != null && integer.intValue() > 0;
+	}
+
 }
