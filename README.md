@@ -6,4 +6,5 @@ Asking AI to manage my to do list
 ![image](https://github.com/user-attachments/assets/7d482b82-c6d3-4e4d-b28b-113157afef29)
 ![image](https://github.com/user-attachments/assets/620ad412-523d-42f9-b470-84b7a7d95578)
 ![image](https://github.com/user-attachments/assets/d496d674-bb4d-4907-9368-ed86df9e7101)
+![image](https://github.com/user-attachments/assets/4f380a43-7538-4661-b4a6-d907df78f4d6)
 
