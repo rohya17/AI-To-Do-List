@@ -4,17 +4,17 @@ Demonstrating Spring AI functions - Custom java functions to manage real time da
 This project uses llama3.2 locally to manage to do list. 
 1. To run this project you should have llama3.2 installed and running on your machine
 2. Run databse query to create table
-CREATE TABLE IF NOT EXISTS public.todolist
-(
-    id serial NOT NULL ,
-    task text COLLATE pg_catalog."default" NOT NULL,
-    deadline date NOT NULL,
-    completed boolean NOT NULL DEFAULT false,
-    CONSTRAINT todolist_pkey PRIMARY KEY (id)
-);
-3. Run project and enjoy, you can find swagger ui on port 8080
+   CREATE TABLE IF NOT EXISTS public.todolist
+   (
+        id serial NOT NULL ,
+        task text COLLATE pg_catalog."default" NOT NULL,
+        deadline date NOT NULL,
+        completed boolean NOT NULL DEFAULT false,
+        CONSTRAINT todolist_pkey PRIMARY KEY (id)
+   );
+4. Run project and enjoy, you can find swagger ui on port 8080
 
-4. Tested examples
+5. Tested examples
   a. asking to add task
 ![image](https://github.com/user-attachments/assets/6f8ebdc0-3b5a-4095-93a9-5fc293546fc6)
   b. tasks added to database 
