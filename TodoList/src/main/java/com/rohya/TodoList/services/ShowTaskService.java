@@ -37,10 +37,10 @@ public class ShowTaskService implements Function<ShowTaskService.Request, ShowTa
 		List<TodoList> toDoList = todoListRepository.findAll();
 		for (TodoList todo : toDoList) {
 			Map<String,String> todomap = new HashMap<>();
-			todomap.put("taskId", todo.getId()+"");
 			todomap.put("task", todo.getTask());
 			todomap.put("deadline", todo.getDeadline().toString());
 			todomap.put("status", todo.isCompleted() ? "Completed" : "Pending");
+			todomap.put("id", todo.getId()+"");
 			responseList.add(todomap);
 		}
 		

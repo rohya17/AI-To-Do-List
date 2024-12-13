@@ -32,10 +32,10 @@ public class AiBot {
 	public void AiBotInit( ) {
 
 		chatClient = builder.defaultSystem(systemConfig)
-				.defaultFunctions( "addTaskFunction","showAllTasksFunction","changeTasksStatusFunction" )
+				.defaultFunctions( "addTaskFunction","showAllTasksFunction","changeTasksStatusFunction","removeTaskFunction")
 				.defaultAdvisors(
-						// Chat memory helps us keep context when using the chatbot for up to 10 previous messages.
-						new MessageChatMemoryAdvisor(new InMemoryChatMemory(), "USER", 100), // CHAT MEMORY
+						// Chat memory helps us keep context when using the chat bot for up to 100 previous messages.
+						new MessageChatMemoryAdvisor(new InMemoryChatMemory(), "USER", 100),
 						new SimpleLoggerAdvisor()
 				)
 				.build();
